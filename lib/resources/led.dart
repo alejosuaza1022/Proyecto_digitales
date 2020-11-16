@@ -119,19 +119,18 @@ class _ChatPage extends State<ChatPage> {
     String dataString = String.fromCharCodes(buffer);
     int index = buffer.indexOf(13);
     if (~index != 0) {
-      setState(() {
-        _Message me = _Message(
-          1,
-          backspacesCounter > 0
-              ? _messageBuffer.substring(
-                  0, _messageBuffer.length - backspacesCounter)
-              : _messageBuffer + dataString.substring(0, index),
-        );
-        messages.add(me);
-        print(me.text);
+      print("hola rata");
+      _Message me = _Message(
+        1,
+        backspacesCounter > 0
+            ? _messageBuffer.substring(
+                0, _messageBuffer.length - backspacesCounter)
+            : _messageBuffer + dataString.substring(0, index),
+      );
+      messages.add(me);
+      print(me.text);
 
-        _messageBuffer = dataString.substring(index);
-      });
+      _messageBuffer = dataString.substring(index);
     } else {
       _messageBuffer = (backspacesCounter > 0
           ? _messageBuffer.substring(

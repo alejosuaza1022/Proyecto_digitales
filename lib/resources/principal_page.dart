@@ -60,10 +60,7 @@ class PrincipalPage extends StatelessWidget {
                     width: 180,
                     child: Functions.button_defined(
                         "Servir comida",
-                        () => {
-                              firebase.registrar_en_firebase(),
-                              callback("el pepe")
-                            },
+                        () => {firebase.registrar_en_firebase(), callback("1")},
                         Icons.fastfood),
                   ),
                 ],
