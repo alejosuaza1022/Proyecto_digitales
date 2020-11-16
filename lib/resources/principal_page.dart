@@ -4,7 +4,8 @@ import 'package:digitales_proyecto/helpers/helpers.dart';
 import 'package:digitales_proyecto/resources/controllerFirebase.dart';
 
 class PrincipalPage extends StatelessWidget {
-  const PrincipalPage({Key key}) : super(key: key);
+  final callback;
+  const PrincipalPage({Key key, this.callback}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,10 @@ class PrincipalPage extends StatelessWidget {
                     width: 180,
                     child: Functions.button_defined(
                         "Servir comida",
-                        () => {firebase.registrar_en_firebase()},
+                        () => {
+                              firebase.registrar_en_firebase(),
+                              callback("el pepe")
+                            },
                         Icons.fastfood),
                   ),
                 ],

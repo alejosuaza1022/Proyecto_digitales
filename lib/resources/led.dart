@@ -85,7 +85,9 @@ class _ChatPage extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PrincipalPage();
+    return PrincipalPage(
+      callback: _sendMessage,
+    );
   }
 
   void _onDataReceived(Uint8List data) {
