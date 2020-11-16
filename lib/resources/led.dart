@@ -118,8 +118,9 @@ class _ChatPage extends State<ChatPage> {
     // Create message if there is new line character
     String dataString = String.fromCharCodes(buffer);
     int index = buffer.indexOf(13);
+    print("hola rata");
+    print(dataString);
     if (~index != 0) {
-      print("hola rata");
       _Message me = _Message(
         1,
         backspacesCounter > 0
