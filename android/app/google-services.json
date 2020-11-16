@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "836458261213",
+    "firebase_url": "https://putave-c7766.firebaseio.com",
+    "project_id": "putave-c7766",
+    "storage_bucket": "putave-c7766.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836458261213:android:6a349f12fe650eaa0e0934",
+        "android_client_info": {
+          "package_name": "thebest.team123"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836458261213-fgm0jkg24213bi7buallv4jg3flqa972.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "thebest.team123",
+            "certificate_hash": "31b20f9104c1dbe4e4b97110dc7ca25a94780471"
+          }
+        },
+        {
+          "client_id": "836458261213-dvhk248prqa7hdhf1emrgmdkl7u61lre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMqUNXMj2dQIrfA71bQA7aG_hPRSQrWqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836458261213-dvhk248prqa7hdhf1emrgmdkl7u61lre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
