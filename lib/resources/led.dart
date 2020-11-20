@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:digitales_proyecto/resources/principal_page.dart';
+import 'package:digitales_proyecto/resources/controllerFirebase.dart';
 
 class ChatPage extends StatefulWidget {
   final BluetoothDevice server;
@@ -87,6 +88,7 @@ class _ChatPage extends State<ChatPage> {
   Widget build(BuildContext context) {
     return PrincipalPage(
       callback: _sendMessage,
+      contenedor: "20",
     );
   }
 
@@ -118,8 +120,12 @@ class _ChatPage extends State<ChatPage> {
     // Create message if there is new line character
     String dataString = String.fromCharCodes(buffer);
     int index = buffer.indexOf(13);
-    print("hola rata");
+    if (dataString == '1') {
+      MyFireBase fb = new MyFireBase();
+      fb.registrar_en_firebase();
+    }
     print(dataString);
+
     if (~index != 0) {
       _Message me = _Message(
         1,

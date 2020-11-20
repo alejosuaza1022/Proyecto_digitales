@@ -6,7 +6,8 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 void main() => runApp(MyApp());
 
-/*class MyApp extends StatelessWidget {
+/*
+class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -28,10 +29,15 @@ void main() => runApp(MyApp());
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("images/imgpet.jpg"), fit: BoxFit.cover)),
-          child: PrincipalPage()),
+          child: PrincipalPage(
+            callback: () => {
+              print("hola"),
+            },
+            contenedor: '20',
+          )),
     );
   }
-} 
+}
 */
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
