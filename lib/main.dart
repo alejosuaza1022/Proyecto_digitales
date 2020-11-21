@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:digitales_proyecto/resources/principal_page.dart';
 import 'package:digitales_proyecto/resources/connection.dart';
-import 'package:digitales_proyecto/resources/led.dart';
+import 'package:digitales_proyecto/resources/page_prin.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 void main() => runApp(MyApp());
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             callback: () => {
               print("hola"),
             },
-            contenedor: '20',
+            contenedor: '85',
           )),
     );
   }
@@ -87,13 +87,13 @@ class Home extends StatelessWidget {
         title: Text('Connection'),
       ),
       body: SelectBondedDevicePage(
-        onCahtPage: (device1) {
+        OnPrinPage: (device1) {
           BluetoothDevice device = device1;
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return ChatPage(server: device);
+                return InterfazPage(server: device);
               },
             ),
           );

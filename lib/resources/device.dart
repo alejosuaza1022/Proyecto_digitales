@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
+/**
+ * component to see the devices availables on the interface to
+ * select them
+ */
 class BluetoothDeviceListEntry extends StatelessWidget {
   final Function onTap;
   final BluetoothDevice device;

@@ -6,10 +6,10 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:digitales_proyecto/resources/principal_page.dart';
 import 'package:digitales_proyecto/resources/controllerFirebase.dart';
 
-class ChatPage extends StatefulWidget {
+class InterfazPage extends StatefulWidget {
   final BluetoothDevice server;
 
-  const ChatPage({this.server});
+  const InterfazPage({this.server});
 
   @override
   _ChatPage createState() => new _ChatPage();
@@ -22,9 +22,10 @@ class _Message {
   _Message(this.whom, this.text);
 }
 
-class _ChatPage extends State<ChatPage> {
+class _ChatPage extends State<InterfazPage> {
   static final clientID = 0;
   BluetoothConnection connection;
+  String value_contenedor;
 
   List<_Message> messages = List<_Message>();
   String _messageBuffer = '';
@@ -42,6 +43,9 @@ class _ChatPage extends State<ChatPage> {
   void initState() {
     super.initState();
 
+/**
+ * check the connection with the bounded device
+ */
     BluetoothConnection.toAddress(widget.server.address).then((_connection) {
       print('Connected to the device');
       connection = _connection;
@@ -49,14 +53,10 @@ class _ChatPage extends State<ChatPage> {
         isConnecting = false;
         isDisconnecting = false;
       });
-
+/**
+ * start a listen object (thread) to recive the data in any moment
+ */
       connection.input.listen(_onDataReceived).onDone(() {
-        // Example: Detect which side closed the connection
-        // There should be `isDisconnecting` flag to show are we are (locally)
-        // in middle of disconnecting process, should be set before calling
-        // `dispose`, `finish` or `close`, which all causes to disconnect.
-        // If we except the disconnection, `onDone` should be fired as result.
-        // If we didn't except this (no flag set), it means closing by remote.
         if (isDisconnecting) {
           print('Disconnecting locally!');
         } else {
@@ -88,10 +88,13 @@ class _ChatPage extends State<ChatPage> {
   Widget build(BuildContext context) {
     return PrincipalPage(
       callback: _sendMessage,
-      contenedor: "20",
+      contenedor: "${this.value_contenedor}",
     );
   }
 
+/**
+ * to get an map the data recived from bluetooth 
+ */
   void _onDataReceived(Uint8List data) {
     // Allocate buffer for parsed data
     int backspacesCounter = 0;
@@ -123,29 +126,13 @@ class _ChatPage extends State<ChatPage> {
     if (dataString == '1') {
       MyFireBase fb = new MyFireBase();
       fb.registrar_en_firebase();
-    }
-    print(dataString);
-
-    if (~index != 0) {
-      _Message me = _Message(
-        1,
-        backspacesCounter > 0
-            ? _messageBuffer.substring(
-                0, _messageBuffer.length - backspacesCounter)
-            : _messageBuffer + dataString.substring(0, index),
-      );
-      messages.add(me);
-      print(me.text);
-
-      _messageBuffer = dataString.substring(index);
     } else {
-      _messageBuffer = (backspacesCounter > 0
-          ? _messageBuffer.substring(
-              0, _messageBuffer.length - backspacesCounter)
-          : _messageBuffer + dataString);
+      this.value_contenedor = dataString;
     }
+    //print(dataString);
   }
 
+/** the used of that method is to send data through the bluetooth connection stablished  */
   void _sendMessage(String text) async {
     text = text.trim();
     textEditingController.clear();
@@ -154,11 +141,6 @@ class _ChatPage extends State<ChatPage> {
       try {
         connection.output.add(utf8.encode(text));
         await connection.output.allSent;
-
-        setState(() {
-          messages.add(_Message(clientID, text));
-        });
-
         Future.delayed(Duration(milliseconds: 333)).then((_) {
           listScrollController.animateTo(
               listScrollController.position.maxScrollExtent,

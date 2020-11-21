@@ -21,6 +21,10 @@ class PrincipalPage extends StatelessWidget {
     ;
     DateTime date;
     MyFireBase firebase = MyFireBase();
+    /** 
+     * just creating the interface using the classes already created and
+     * using just dart/flutter to it
+     */
     return Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -45,7 +49,7 @@ class PrincipalPage extends StatelessWidget {
                         height: 50,
                         width: (width - 50) / 2,
                         child: Functions.button_defined(
-                            "ver datos firebase",
+                            "ver datos",
                             () => {
                                   Navigator.push(
                                     context,
@@ -65,11 +69,11 @@ class PrincipalPage extends StatelessWidget {
                     Container(
                       height: 50,
                       width: (width - 50) / 2,
-                      child: Functions.button_defined(
-                          "Servir comida",
-                          () =>
-                              {firebase.registrar_en_firebase(), callback("1")},
-                          Icons.fastfood),
+                      child: Functions.button_defined("Servir", () {
+                        DateTime date = DateTime.now();
+                        firebase.registrar_en_firebase();
+                        callback("value:1/DATE:$date");
+                      }, Icons.fastfood),
                     ),
                   ],
                 ),

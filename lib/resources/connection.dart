@@ -7,10 +7,10 @@ class SelectBondedDevicePage extends StatefulWidget {
   /// If true, on page start there is performed discovery upon the bonded devices.
   /// Then, if they are not avaliable, they would be disabled from the selection.
   final bool checkAvailability;
-  final Function onCahtPage;
+  final Function OnPrinPage;
 
   const SelectBondedDevicePage(
-      {this.checkAvailability = true, @required this.onCahtPage});
+      {this.checkAvailability = true, @required this.OnPrinPage});
 
   @override
   _SelectBondedDevicePage createState() => new _SelectBondedDevicePage();
@@ -30,6 +30,7 @@ class _DeviceWithAvailability extends BluetoothDevice {
   _DeviceWithAvailability(this.device, this.availability, [this.rssi]);
 }
 
+/**with this class why try to list and stablished a session with a selected devide */
 class _SelectBondedDevicePage extends State<SelectBondedDevicePage> {
   List<_DeviceWithAvailability> devices = List<_DeviceWithAvailability>();
 
@@ -76,6 +77,7 @@ class _SelectBondedDevicePage extends State<SelectBondedDevicePage> {
     _startDiscovery();
   }
 
+/**recognize the available devices */
   void _startDiscovery() {
     _discoveryStreamSubscription =
         FlutterBluetoothSerial.instance.startDiscovery().listen((r) {
@@ -115,7 +117,7 @@ class _SelectBondedDevicePage extends State<SelectBondedDevicePage> {
             // rssi: _device.rssi,
             // enabled: _device.availability == _DeviceAvailability.yes,
             onTap: () {
-              widget.onCahtPage(_device.device);
+              widget.OnPrinPage(_device.device);
             },
           ),
         )

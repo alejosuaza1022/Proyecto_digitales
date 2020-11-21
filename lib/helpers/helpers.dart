@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/** Function to create a standar button  */
 class Functions {
   static Widget button_defined(text, Function callback, IconData icon) {
     return FlatButton.icon(

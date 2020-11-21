@@ -68,6 +68,9 @@ class _CustomDataState extends State<CustomData> {
     );
   }
 
+/**
+ * generate the rows for the table
+ */
   List<DataRow> rows(data) {
     var ressp = data;
     print(ressp);
@@ -82,6 +85,9 @@ class _CustomDataState extends State<CustomData> {
     return list;
   }
 
+/**
+ * generate data the rows for the tables
+ */
   DataRow _data_rows(a, b) {
     return DataRow(cells: <DataCell>[
       DataCell(Text(
@@ -100,6 +106,10 @@ class _CustomDataState extends State<CustomData> {
     ]);
   }
 
+/**
+ * generate the table
+ * through the data got from firebase
+ */
   FutureBuilder get_table(BuildContext context) {
     return FutureBuilder(
         future: _collectionref.obtene_datos_firebase(),
